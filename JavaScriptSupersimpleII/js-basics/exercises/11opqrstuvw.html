@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>
+      
+    </title>
+  </head>
+  <body>
+
+    <script>
+
+      let o11 = ['hello', 'world', 'search', 'good', 'search'];
+
+      function checkWord(array, word) {
+
+        let result = -1;
+
+        for(let i = 0; i < array.length; i++) {
+          let checkWord = array[i];
+          if (checkWord === word) {
+            result = i;
+            break
+          }
+        } 
+        console.log(result);
+      }
+
+    checkWord(o11, 'search');
+
+    let r11 = ['egg', 'ham', 'egg', 'egg', 'apple'];
+
+    function deleteWord(array, word) {
+
+      let arrayScope = array.slice();
+      arrayScope.reverse();
+
+      let container = [];
+      let removedItems = 0;
+
+      for(let i = 0; i < arrayScope.length; i++) {
+        let wordScope = arrayScope[i];
+
+        if (wordScope === word && removedItems < 2) {
+          removedItems++;
+          continue
+        }
+
+        container.push(arrayScope[i]);
+      }
+      container.reverse();
+      return container;
+    }
+
+    console.log(deleteWord(r11, 'egg'));
+
+    function fizzBuzz(num) {
+      
+      for(let i = 1; i < 21; i++) {
+        if (i % 3 === 0 && i % 5 === 0) {
+          console.log('FizzBuzz');
+        
+        } else if (i % 3 === 0) {
+          console.log('Fizz');
+
+        } else if (i % 5 === 0) {
+          console.log('Buzz');
+          
+        } else {
+           console.log(i)
+          }
+      }
+    }
+
+    console.log(fizzBuzz());
+
+    let w11 = ['green', 'red', 'blue', 'red']
+
+    function unique(array) {
+      let container = [];
+
+      for(let i = 0; i < array.length; i++) {
+        let word = array[i];
+        if (!container[word])
+          container.push(word)
+      }
+
+      return container;
+
+    }
+
+    console.log(unique(w11));
+
+
+    </script>
+  </body>
+</html>

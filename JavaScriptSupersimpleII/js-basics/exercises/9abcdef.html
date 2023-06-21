@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>
+      
+    </title>
+  </head>
+  <body>
+
+    <p>9a</p>
+
+    <button class="js-buttonA">9a</button>
+
+    <p>9b</p>
+
+    <button
+     class="js-buttonB"
+     onclick="buttonWorks()"
+     >9b
+    </button>
+
+    <p>9c</p>
+
+    <button
+      onclick="document.querySelector('.js-chosen').innerText
+        = 'You chose: Heads'"
+      >Heads
+    </button>
+
+    <button
+      onclick="document.querySelector('.js-chosen').innerText
+        = 'You chose: Tails'"
+      >Tails
+    </button>
+
+    <p class="js-chosen"></p>
+
+    <p>9d</p>
+
+    <input 
+      type="text"
+      placeholder="Your name"
+      id="text"
+      onkeydown="handleKeys()"
+    >
+    <button
+      onclick="submitName()
+      ">Submit
+    </button>
+
+    <p class="js-text"></p>
+
+    <script>
+
+      function handleKeys(){
+        if(event.key === 'Enter'){
+          submitName();
+        }
+      }
+      
+      function submitName(){
+        let text = document.getElementById('text').value;
+
+        document.querySelector('.js-text').innerText 
+        =`Yor name is: ${text}`
+      }
+
+      console.log(document.querySelector('button'));
+      
+      function buttonWorks(){
+        document.querySelector('.js-buttonB').innerText = '9b done!';
+      };
+
+
+
+    </script>
+  </body>
+</html>

@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>6fghij</title>
+  </head>
+  <body>
+    <button onclick="headsOrTails('Heads')">Heads</button>
+    <button onclick="headsOrTails('Tails')" >Tails</button>
+    
+    <script>
+
+      function headsOrTails(Chosen){
+      
+        let face = Math.random();
+        let result = '';
+
+        let guess = Chosen;
+        
+        if (face <= 0.5)
+         result = 'Heads';
+        else  result = 'Tails';
+
+
+
+      console.log(result === guess ? 'You WIN!' : 'You LOSE!')}
+    </script>
+  </body>
+</html>
