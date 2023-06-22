@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html>
+    <head>
+
+    </head>
+
+    <body>
+        <p> EXERCISES 2</p>
+
+         <!--Exercises section 2-->
+            <button>Up</button>
+            <button>Down</button>
+    
+             <script>
+             console.log('Pau Mestre');
+             </script> 
+
+        <!-- Exercises section 3-->
+        <p> EXERCISES 3</p>
+
+            <script>
+                let month= 'November '
+                let DayOfTheMonth= '09 '
+                let year= '2023'
+            </script>
+
+            <script>
+                let result1= 4+5*3;
+                let result2=(4+5)*3;
+            </script>
+
+            <script>
+                let age=26;
+                let message= 'I am ' + age + ' years old';
+            </script>
+
+        <!--Exercises section 5-->
+        <p> EXERCISES 5</p>
+
+            <script>
+                let button = document.createElement('button');
+                button.innerText = 'Click me';
+                document.body.appendChild(button);
+
+            </script>
+
+            <script>
+                document.title = 'Practice JS page'   
+            </script>
+
+            <script>
+                let todo1=  'Get groceries';
+                let todo2= 'Wash car';
+                let todo3= 'Make dinner';
+
+                let element = document.createElement('div'); /*This line of code creates a html element and inside () is the type of element we want to create all inside JS */
+                element.innerText = todo3; /* This line is an instruction to change the text inside the html element that we just created*/
+                document.body.appendChild(element); /* This line adds a element (another child) at the end of the body, the element will be the one inside the braquets*/
+            
+                element = document.createElement('div');
+                element.innerText = todo2;
+                document.body.appendChild(element);
+
+                element = document.createElement('div');
+                element.innerText = todo1;
+                document.body.appendChild(element);
+           </script>
+
+        <!--Exercises section 6-->
+        <p> EXERCISES 6</p>
+
+         <script>
+          function greeting(Pau){
+            console.log('Hello '+ Pau);
+          }
+          greeting('Pau');
+
+          
+          
+          function toUpper(str) {
+            console.log(str.toUpperCase());
+          }
+          str = 'Pau'
+          toUpper(str); 
+
+          function InchToCm(length){
+            console.log (length*2.54)
+          }      
+          InchToCm(40);
+
+         </script>    
+
+        <!--Exercises section 7-->
+
+        <p> EXERCISES 7</p>
+
+         <script>
+
+            function toUpper(stringArr) {
+                let result = [];
+
+                stringArr.forEach(function (str) {
+                    result.push(str.toUpperCase());
+                });
+
+                console.log(result);
+            }
+                toUpper(['hello', 'world',]);
+
+            function arrayDouble(stringDL){
+                let perrogato = [];
+
+                stringDL.forEach(function (str) {
+                    perrogato.push(str);
+                    perrogato.push(str);
+
+
+                });
+                console.log(perrogato);
+            }
+                arrayDouble(['bark', 'meow']);
+            
+            function arraySum(numbers){
+                let total = 0;
+
+                numbers.forEach(function (num) {
+                    total = total+num;
+                });
+
+                console.log(total);
+            }
+                arraySum([1, 2, 7]);
+                arraySum([5, -2, 9, 0]);
+
+           
+           </script>   
+
+        <!--Exercises section 8-->
+
+        <p> EXERCISES 8</p>
+
+            <button 
+                id="todo-button", 
+                onclick="doneButton()"
+                Style= "display:block; margin-bottom: 10px;"
+                >To Do 
+            </button>
+
+            <div id="counter",
+             style= "display: inline-block"> 0 </div>
+            <button 
+            onclick="counterUp()"
+            >Up</button>
+            <button 
+            onclick="counterDown()"
+            >Down</button>
+
+            <input type="text" id="textbox2">
+            <button onclick="addDiv()">Take it</button>
+        <script>
+
+            function doneButton(){
+            let todobutton = document.getElementById('todo-button');
+            todobutton.innerText = 'DONE'
+            };
+
+            let count = 0;
+            
+            function counterUp(){
+                count = count + 1;
+                updateCount();
+            }
+           
+            function counterDown(){
+                count = count - 1;
+                updateCount();
+            }
+
+            function updateCount(){
+                let counter = document.getElementById('counter');
+                counter.innerText = count;         
+
+            }
+
+            function addDiv (){
+                const textbox2 = document.getElementById('textbox2');
+                const textTitle = textbox2.value;
+
+                const div = document.createElement('div');
+                div.innerText = textTitle;
+                document.body.appendChild(div);
+            }
+        </script>
+
+        <!--EXERCISES 9-->
+
+        <p> EXERCISES 9.1</p>
+
+            <Button onclick="addFood('Apple')">Apple</Button>
+            <Button onclick="addFood('Tomato')">Tomato</Button>
+            <Button onclick="addFood('Eggs')">Eggs</Button>
+            <Button onclick="clearList()">Clear</Button>
+
+            <div id="cart"></div>
+
+            <script> 
+
+            const cart = document.getElementById('cart');
+
+
+            function addFood(food){
+
+                const cartItem = document.createElement('div');
+                cartItem.innerText = food;
+                cart.appendChild(cartItem);
+
+            }   
+
+            function clearList(){
+
+                cart.innerHTML = '';
+            }
+            </script>
+
+        <p> EXERCISES 9.2</p>
+
+        <input id="measurement" >
+        <button onclick="convertCm()">Convert to Cm</button>
+        <button onclick="convertIn()">Convert to Inch</button>
+
+        <script>
+
+            const measurement = document.getElementById('measurement');
+       
+         
+            function convertCm(){
+                const value9 = measurement.value;
+
+                // value is a string and strings can't be multiplied. We need
+                // to convert it into a number before we can multiply it.
+                const convertedValue = +value9 *2.54;
+
+                const result9 = document.createElement('div');
+                result9.innerText = convertedValue;
+                document.body.appendChild(result9);
+            }
+
+            function convertIn(){
+                const value9 = measurement.value;
+
+                const valueConverted = + value9 / 2.54;
+
+                const result = document.createElement('div');
+                result.innerText = valueConverted;
+                document.body.appendChild(result);
+
+            }
+
+        </script>
+
+
+     
+    </body>
+</html>
