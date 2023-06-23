@@ -7,6 +7,27 @@
   </head>
   <body>
 
+    <button 
+      onclick="c12()"
+      class="js-c12"
+    >Working</button>
+
+    <button
+      onclick="addToCart()"
+      >Add to cart
+    </button>
+    <div class="js-e12"></div>
+
+    <button
+      onclick="addMessage()"
+      >Add message
+    </button>
+
+    <button
+      onclick="removeMessage()"
+      >Remove message
+    </button>
+
     <script>
       let add = function () {
         console.log(2+3);
@@ -14,6 +35,78 @@
 
       add();
       add();
+
+
+      function runTwice(fun) {
+        console.log(fun);
+        console.log(fun);
+
+      }
+
+      runTwice(function () {'12b'})
+      runTwice(add)
+
+      function c12() { 
+        let button = document.querySelector('.js-c12');
+        button.innerHTML = 'Loading...'
+        
+        setTimeout(function () {
+          button.innerHTML = 'Finished!'
+        }, 1000);
+      }
+
+      let timeoutId;
+
+      function addToCart() {
+        let message = document.querySelector('.js-e12');
+        message.innerHTML = 'Added';
+
+        clearTimeout(timeoutId);
+
+        timeoutId = setTimeout(function () {
+          message.innerHTML = '';
+        }, 2000);
+      }
+
+      let intervalId;
+      let messages = 2;
+      document.title = 'WhatsApp'; 
+
+      g12();  
+
+      function g12() {
+        
+        clearInterval(intervalId);
+
+        intervalId = setInterval(function(){
+        
+        if (document.title === 'WhatsApp') {
+          document.title = `(${messages}) New messages`
+            if(messages === 0) {
+              clearInterval(intervalId)
+              document.title = 'WhatsApp'
+            }
+        } else {document.title = 'WhatsApp'}        
+        }, 800);
+      };
+
+      function addMessage() {
+        messages++;
+        g12()
+      };
+
+      function removeMessage() {
+        messages--;
+        g12();
+        if (messages < 0) {
+          messages = 0
+        }
+      };
+
+
+
+
+
 
     </script>
   </body>
