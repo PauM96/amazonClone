@@ -8,7 +8,7 @@
   <body>
 
     <script>
-      
+      /*
       const buttonElement = document.querySelector('.js-button');
 
       const eventListener = () => {
@@ -89,10 +89,32 @@
         console.log(index);
 
       });
+      */
 
+      const regularFunction = function(param, param2) {
+        console.log('RegularFunction');
+        return 5;
+      };
 
+      regularFunction();
+
+      const arrowfunction = (param, param2) => {
+        console.log('ArrowFunction');
+        return 5;
+
+      };
+
+      arrowfunction();
+
+      const OneParm = param => {
+        console.log(param + 1)
+      };
+
+      OneParm(2);
       
-      
+      const OneLine = () => 2 + 3;
+
+      console.log(OneLine())
 
     </script>
   </body>

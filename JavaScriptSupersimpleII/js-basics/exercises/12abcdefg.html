@@ -70,38 +70,39 @@
 
       let intervalId;
       let messages = 2;
-      document.title = 'WhatsApp'; 
+      document.title = 'WhatsApp';
 
-      g12();  
+      g12();
 
       function g12() {
-        
         clearInterval(intervalId);
 
-        intervalId = setInterval(function(){
-        
-        if (document.title === 'WhatsApp') {
-          document.title = `(${messages}) New messages`
-            if(messages === 0) {
-              clearInterval(intervalId)
-              document.title = 'WhatsApp'
+        intervalId = setInterval(function() {
+          if (document.title === 'WhatsApp') {
+            if (messages === 0) {
+              clearInterval(intervalId);
+              document.title = 'WhatsApp';
+            } else {
+              document.title = `(${messages}) New messages`;
             }
-        } else {document.title = 'WhatsApp'}        
+          } else {
+            document.title = 'WhatsApp';
+          }
         }, 800);
-      };
+      }
 
       function addMessage() {
         messages++;
-        g12()
-      };
+        g12();
+      }
 
       function removeMessage() {
         messages--;
-        g12();
         if (messages < 0) {
-          messages = 0
+          messages = 0;
         }
-      };
+        g12();
+      }
 
 
 
