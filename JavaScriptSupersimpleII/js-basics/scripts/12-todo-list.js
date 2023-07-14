@@ -23,8 +23,8 @@ function renderTodoList() {
     document.querySelectorAll('.js-deleteButton')
       .forEach((deleteButton, index) => {
         deleteButton.addEventListener('click', () => {
-        todoList.splice(index, 1);
-        renderTodoList();
+          todoList.splice(index, 1);
+          renderTodoList();
       });
     });
 
@@ -33,10 +33,10 @@ function renderTodoList() {
 
 }
 
-document.querySelector('js-addTodo')
+document.querySelector('.js-addTodo')
   .addEventListener('click', () => {
     addTodo();
-  })
+});
 
 function addTodo() {
   const inputElement = document.querySelector('.js-name-input');
@@ -56,4 +56,4 @@ function addTodo() {
   inputElement.value = '';
 
   renderTodoList();
-}
+};
