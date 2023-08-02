@@ -6,28 +6,37 @@ function renderTodoList() {
   let todoListHTML = '';
   
   todoList.forEach((todoObject, index) => {
-    const { name, dueDate } = todoObject;
+    const { name, dueDate, done } = todoObject;
     const html = `
-      <input class="js-checkbox" type="checkbox">
-      <div>${name}</div>
-      <div>${dueDate}</div>
-      <button class="delete-todo-button js-deleteButton"
-      >Delete</button> 
+      
+        <input class="js-checkbox" type="checkbox" ${done ? 'checked' : ''}> <!-- Se agrega el atributo "checked" si la tarea está marcada como hecha -->
+        <div class="${done ? 'done' : ''}">${name}</div> <!-- Se agrega la clase "done" si la tarea está marcada como hecha -->
+        <div>${dueDate}</div>
+        <button class="delete-todo-button js-deleteButton">Delete</button>
+
     `;
     todoListHTML += html;
-
   });
   
   document.querySelector('.js-todo-list')
     .innerHTML = todoListHTML;
 
-    document.querySelectorAll('.js-deleteButton')
-      .forEach((deleteButton, index) => {
-        deleteButton.addEventListener('click', () => {
-          todoList.splice(index, 1);
-          renderTodoList();
+  document.querySelectorAll('.js-deleteButton')
+    .forEach((deleteButton, index) => {
+      deleteButton.addEventListener('click', () => {
+        todoList.splice(index, 1);
+        renderTodoList();
       });
     });
+
+  document.querySelectorAll('.js-checkbox')
+    .forEach((checkbox, index) => {
+      checkbox.addEventListener('change', () => {
+        todoList[index].done = checkbox.checked; // Se actualiza el estado "done" de la tarea en el array de tareas
+        renderTodoList(); // Se vuelve a renderizar la lista para reflejar los cambios
+      });
+  });
+
 
   const todoListString = JSON.stringify(todoList);
   localStorage.setItem('listStorage', todoListString);
@@ -37,7 +46,7 @@ function renderTodoList() {
 document.querySelector('.js-addTodo')
   .addEventListener('click', () => {
     addTodo();
-});
+  });
 
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -59,7 +68,7 @@ document.addEventListener('DOMContentLoaded', () => {
       localStorage.setItem('listName', header.innerText)
 
       event.preventDefault();
-  }});
+    }});
 });
 
 
@@ -74,11 +83,12 @@ function addTodo() {
     //name: name,
     //dueDate: dueDate,
     name,
-    dueDate
+    dueDate,
+    done: false, // Inicialmente, el estado "done" de la tarea se establece como "false" (no hecha)
   });
 
 
   inputElement.value = '';
 
-  renderTodoList();
+  renderTodoList(); 
 };
