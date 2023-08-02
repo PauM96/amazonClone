@@ -15,20 +15,33 @@ document.querySelector('.js-score').innerHTML = `Wins: ${score.wins}, Losses: ${
 let isAutoPlaying = false;
 let intervalId;
 
+const autoplayButton = document.querySelector('.js-autoplayButton');
+
+autoplayButton.addEventListener('click', () => autoPlay());
+
+const stopAutoPlay = () => {
+    if(isAutoPlaying === true) {
+    autoplayButton.innerHTML = 'Stop Playing';
+  } else {
+    autoplayButton.innerHTML = 'Auto Play';
+  } 
+};
+
 function autoPlay() {
-  if (!isAutoPlaying) {
-    intervalId = setInterval(() => {
+    if (!isAutoPlaying) {
+    intervalId = setInterval(() => {      
       const playerMove = pickComputerMove();
       playGame(playerMove);
     }, 1000);
     isAutoPlaying = true;
+    stopAutoPlay();
 
   } else {
     clearInterval(intervalId);
     isAutoPlaying = false;
+    stopAutoPlay();
   }
-}
-
+};
 document.querySelector('.js-rock')
   .addEventListener('click', () => playGame('Rock'));
 
@@ -40,13 +53,17 @@ document.querySelector('.js-scissors')
 
 document.body.addEventListener('keydown', (event) => {
   if (event.key === 'r' || event.key === 'R'){
-    playGame('Rock')
+    playGame('Rock');
   } else if (event.key === 'p' || event.key === 'P'){
-    playGame('Paper')
+    playGame('Paper');
   } else if (event.key === 's' || event.key === 'S'){
-    playGame('Scissors')
+    playGame('Scissors');
+  } else if (event.key === 'a' || event.key === 'A'){
+    autoPlay();
+  } else if (event.key === 'Backspace'){
+    showResetConfirmation();
   };
-})
+});
 
 function playGame(myMove){
 
@@ -64,7 +81,7 @@ function playGame(myMove){
      result = 'You WIN!'
    }
    if(computerMove === 'Paper'){  
-     if(myMove === 'Rock') 
+     if(myMove === 'Rock')
       result = 'You LOSE';
      if(myMove === 'Scissors')
      result = 'You WIN!'
@@ -93,10 +110,6 @@ function playGame(myMove){
    = `You <img class="move-icon" src=" images/${myMove}-emoji.png"> <img class="move-icon" src="images/${computerMove}-emoji.png"> Computer`;
 
    document.querySelector('.js-score').innerHTML = `Wins: ${score.wins}, Losses: ${score.losses}, Ties: ${score.ties}.`;
-
-
-
-
 }
 
 function pickComputerMove(){
@@ -114,8 +127,52 @@ function pickComputerMove(){
    computerMove = 'Scissors';
 
  return computerMove;
+ 
+};
 
-} 
+document.querySelector('.js-resetButton')
+  .addEventListener('click', () => showResetConfirmation());
+
+  
+document.body.addEventListener('click', (event) => {
+  const clickedElement = event.target;
+  
+  if (clickedElement.classList.contains('js-reset-confirm-yes')) {
+    resetScore();
+    hideResetConfirmation();
+  } else if (clickedElement.classList.contains('js-reset-confirm-no')) {
+    hideResetConfirmation();
+  }
+});
+
+
+function showResetConfirmation() {
+  document.querySelector('.js-reset-confirmation')
+    .innerHTML = `Are you sure to reset the score?
+    <button class="js-reset-confirm-yes reset-confirm-button">
+      Yes
+    </button>
+
+    <button class="js-reset-confirm-no reset-confirm-button">
+      No
+    </button>`
+};
+
+document.querySelector('.js-reset-confirm-yes')
+  .addEventListener('click', () => {
+    resetScore();
+    hideResetConfirmation();
+  });
+
+document.querySelector('.js-reset-confirm-no')
+  .addEventListener('click', () => {
+    hideResetConfirmation();
+  });
+
+function hideResetConfirmation() {
+  document.querySelector('.js-reset-confirmation')
+    .innerHTML = '';
+};
 
 function resetScore(){
  score.wins = 0;
@@ -126,9 +183,4 @@ function resetScore(){
 
  document.querySelector('.js-score').innerHTML = `Wins: ${score.wins}, Losses: ${score.losses}, Ties: ${score.ties}.`;
 
-}
-
-
-
-
-
+};
