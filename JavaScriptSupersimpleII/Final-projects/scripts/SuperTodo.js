@@ -3,21 +3,24 @@ const todoList = JSON.parse(localStorage.getItem('listStorage')) || [];
 renderTodoList();
 
 function renderTodoList() {
-  let todoListHTML = '';
-  let completedTasks = '';
+  let todoListHTML = {};
+  let completedTasks = {};
   
   todoList.forEach((todoObject, index) => {
     const { name, dueDate, done } = todoObject;
     const html = `
-        <input class="js-checkbox" type="checkbox" data-index="${index}" ${done ? 'checked' : ''}> <!-- Se agrega el atributo "checked" si la tarea está marcada como hecha -->
+       <input class="js-checkbox" type="checkbox" data-index="${index}" ${done ? 'checked' : ''}> <!-- Se agrega el atributo "checked" si la tarea está marcada como hecha -->
         <div class="${done ? 'done' : ''}">${name}</div> <!-- Se agrega la clase "done" si la tarea está marcada como hecha -->
         <div>${dueDate}</div>
-        <button class="delete-todo-button js-deleteButton">Delete</button>
-    `;
+      `;
+    const deleteButton = `
+      <button class="delete-todo-button js-deleteButton">Delete</button>`
+    ;
+
     if (done) {
       completedTasks += html;
     } else {
-      todoListHTML += html;
+      todoListHTML += html + deleteButton;
     }
   });
   
@@ -56,7 +59,7 @@ function updateCheck() {
 document.querySelector('.js-addTodo')
   .addEventListener('click', () => {
     addTodo();
-  });
+});
 
 
 document.addEventListener('DOMContentLoaded', () => {
