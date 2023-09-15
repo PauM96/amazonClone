@@ -3,8 +3,8 @@ const todoList = JSON.parse(localStorage.getItem('listStorage')) || [];
 renderTodoList();
 
 function renderTodoList() {
-  let todoListHTML = {};
-  let completedTasks = {};
+  let todoListHTML = '';
+  let completedTasks = '';
   
   todoList.forEach((todoObject, index) => {
     const { name, dueDate, done } = todoObject;
