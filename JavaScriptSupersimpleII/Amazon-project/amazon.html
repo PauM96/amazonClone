@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <link rel="stylesheet" href="styles/amazon.css">
+    <link rel="stylesheet" href="styles/general.css">
+    <link rel="stylesheet" href="styles/header.css">
+  </head>
+  <body>
+    
+    <header class="amazon-header js-amazon-header">
+
+      <section class="left-section">
+        <img class="amazon-logo" src="images/amazon-logo-white.png">
+      </section>
+
+      <section class="middle-section">
+        <input type="text" placeholder="Search" 
+          class="search-bar js-search-bar">
+        <button 
+          class="search-button js-search-button">
+          <img class="search-icon" src="images/Icons/search-icon.png">
+        </button>
+      </section>
+
+      <section class="right-section">
+        <a class="orders-link header-link"
+         href="orders">
+          <span class="returns-text">Returns</span>
+          <span class="orders-text">& Orders</span>
+        </a>
+        
+        <a class="cart-link header-link" href="checkout">
+          <img class="cart-icon" src="images/icons/cart-icon.png">
+          <div class="js-cart-quantity cart-quantity" data-testid="cart-quantity">
+            3
+          </div>
+          <div class="cart-text">Cart</div>
+        </a>
+      </section>
+
+    </header>
+
+    <main>
+
+      <div class="products-grid js-products-grid">
+      </div>
+
+
+    </main>
+
+    <script src="data/catr.js"></script>
+    <script src="data/products.js"></script>
+    <script src="scripts/amazon.js"></script>
+  </body>
+</html>
