@@ -1,3 +1,5 @@
+import { cart } from '../data/catr.js';
+
 //Acumulator Pattern
 let productsHTML = '';
 
