@@ -1,4 +1,5 @@
-import { cart } from '../data/catr.js';
+import {cart, addToCart} from '../data/catr.js';
+import {products} from '../data/products.js';
 
 //Acumulator Pattern
 let productsHTML = '';
@@ -60,34 +61,24 @@ products.forEach((product) => {
 document.querySelector('.js-products-grid')
   .innerHTML = productsHTML;
 
+function updateCartQuantity() {
+
+  let cartQuantity = 0;
+
+    cart.forEach((cartItem) => {
+      cartQuantity += cartItem.quantity;
+    });
+
+    let cartQuantityHTML = document.querySelector('.js-cart-quantity').innerHTML = cartQuantity;
+};
+
 document.querySelectorAll('.js-add-to-cart-button')
   .forEach((button) => {
     button.addEventListener('click', () => {
       const productId = button.dataset.productId;
 
-      let matchingItem;
+      addToCart(productId);
+      updateCartQuantity();
 
-      cart.forEach((item) => {
-        if (productId === item.productId) {
-          matchingItem = item;
-        }
-      });
-
-      if (matchingItem) {
-        matchingItem.quantity += 1;
-      } else {
-        cart.push({
-          productId: productId,
-          quantity: 1
-        });
-      }
-
-      let cartQuantity = 0;
-
-      cart.forEach((item) => {
-        cartQuantity += item.quantity;
-      });
-
-      let cartQuantityHTML = document.querySelector('.js-cart-quantity').innerHTML = cartQuantity;
     });
   });
